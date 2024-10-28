@@ -19,20 +19,19 @@ public class Headprogram {
             System.out.println(p);
         }
         String input = JOptionPane.showInputDialog(null, "Enter name or identification number");
-        for (Person p : people) {
-            if (p.getName().equals(input) || p.getPersonalIdentityNumber().equals(input)) {
-                if(p.getStatus().equals(MembershipStatus.Active)) {
+
+        for (Person person : people) {
+            if (person.getName().equalsIgnoreCase(input) || person.getPersonalIdentityNumber().equals(input)) {
+                if (person.getStatus().equals(MembershipStatus.Active)) {
                     WriteToFile write = new WriteToFile();
-                    write.addGymVisitor(p);
+                    write.addGymVisitor(person);
                     JOptionPane.showMessageDialog(null, "Welcome to the gym");
-                }else if (p.getStatus().equals(MembershipStatus.Inactive)) {
+                    break;
+                } else if (person.getStatus().equals(MembershipStatus.Inactive)) {
                     JOptionPane.showMessageDialog(null, "Your membership is not active");
                     System.out.println("Your membership is not active");
+                    break;
                 }
-
-            }else{
-                JOptionPane.showMessageDialog(null, "You have never been a member in this gym");
-                break;
             }
         }
 
